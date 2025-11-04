@@ -1,0 +1,25 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AList_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003Fb7208b3f72528d22781d25fde9a55271bdf2b5aade4f03b1324579a25493cd8_003FList_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c0ca768f_002D3a20_002D4bd0_002Da2c1_002D2139a3d0993d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Draw_Cards" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.DrawCardTest.Draw_Cards&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.ActivateCardTest.Draw_Cards&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.ActivateCardTest.Activate_Cards&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;8F46E7B5-02C7-84D8-D4BB-181BE9E268B2/d:Game/f:ActivateCardTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;8F46E7B5-02C7-84D8-D4BB-181BE9E268B2/d:Game/f:DrawCardTest.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c327cb73_002D0467_002D42c2_002Daeb2_002Df6b6db0402c3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Factory_Card" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.Factories.CardFactoryTest.Factory_Card&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cd95f3a4_002D759b_002D432f_002Db683_002D1cf68258bbe7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Draw_Cards #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.DrawCardTest.Draw_Cards&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.ActivateCardTest.Activate_Cards&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8F46E7B5-02C7-84D8-D4BB-181BE9E268B2::net9.0::MiJuego.Tests.Factories.CardFactoryTest.Factory_Card&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

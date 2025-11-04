@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics">
+    <Asset Type="Graphics:FontDescription">
+        <FontName>Arial</FontName>
+        <Size>20</Size>
+        <Spacing>0</Spacing>
+        <UseKerning>true</UseKerning>
+        <Style>Regular</Style>
+        <CharacterRegions>
+            <!-- ASCII básico -->
+            <CharacterRegion>
+                <Start> </Start>
+                <End>~</End>
+            </CharacterRegion>
+
+            <!-- Vocales acentuadas minúsculas -->
+            <CharacterRegion><Start>á</Start><End>ú</End></CharacterRegion>
+
+            <!-- Vocales acentuadas mayúsculas -->
+            <CharacterRegion><Start>Á</Start><End>Ú</End></CharacterRegion>
+
+            <!-- Ñ y ñ -->
+            <CharacterRegion><Start>ñ</Start><End>ñ</End></CharacterRegion>
+            <CharacterRegion><Start>Ñ</Start><End>Ñ</End></CharacterRegion>
+
+            <!-- Signos de apertura -->
+            <CharacterRegion><Start>¡</Start><End>¡</End></CharacterRegion>
+            <CharacterRegion><Start>¿</Start><End>¿</End></CharacterRegion>
+        </CharacterRegions>
+    </Asset>
+</XnaContent>

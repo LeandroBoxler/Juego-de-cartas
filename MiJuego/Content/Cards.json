@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "Fireball",
+    "Description": "A powerful fireball that causes damage",
+    "Value": 50
+  },
+  {
+    "Name": "Ice Blast",
+    "Description": "Freezes the enemy, causing 30 damage",
+    "Value": 30
+  },
+  {
+    "Name": "Heal",
+    "Description": "Restores 20 health points",
+    "Value": -20
+  },
+  {
+    "Name": "Lightning Strike",
+    "Description": "Strikes the enemy with lightning",
+    "Value": 40
+  },
+  {
+    "Name": "Shield",
+    "Description": "Grants a temporary shield, reducing damage",
+    "Value": 10
+  }
+]
