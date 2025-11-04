@@ -9,11 +9,10 @@ using MiJuego.Domain.Interfaces;
 using MiJuego.Domain.UseCases;
 using MiJuego.Game;
 using MiJuego.Helpers;
-
 using MiJuego.Views;
+using MiJuego.Scenes.Menu;
 
 namespace MiJuego.Scenes.Battle;
-
     public class BattleScene : IGameScene
     {
         private SpriteFont _font;
@@ -27,7 +26,8 @@ namespace MiJuego.Scenes.Battle;
 
         private CardView CardSelected = null;
         private ActivateButton _activateCardButton;
-        private Vector2 _cardStartPosition = new (50, 400);
+        
+        private Vector2 _cardStartPosition = new (0, 400);
         private CardSelector _cardSelector;
         private HUD _hud;
 

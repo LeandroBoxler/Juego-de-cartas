@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MiJuego.Helpers;
 using MiJuego.Scenes;
+using MiJuego.Scenes.Menu;
 
 namespace MiJuego;
 
@@ -15,7 +16,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        
+
     }
 
     protected override void Initialize()
@@ -26,7 +27,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
         _gameState = new GameState();
         base.Initialize();
-        SceneManager.ChangeScene(new MenuScene(_gameState)); 
+        SceneManager.ChangeScene(new MenuScene(_gameState));
     }
 
     protected override void LoadContent()
@@ -35,7 +36,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
         GameServices.Content = Content;
         ResolutionHelper.UpdateScale(GraphicsDevice);
         GameServices.GraphicsDevice = GraphicsDevice;
-       
+
 
 
     }
