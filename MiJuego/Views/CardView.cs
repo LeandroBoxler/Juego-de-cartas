@@ -14,16 +14,18 @@ namespace MiJuego.Views;
         public Texture2D Texture { get; }
         public Vector2 Position { get; set; }
         public Vector2 OriginalPosition { get; }
-        public float Scale { get; set; } = 1f;
+        public float Scale { get; set; } = 0.68f;
 
         public float EffectiveScale => Scale * MathF.Min(ResolutionHelper.ScaleX, ResolutionHelper.ScaleY);
+private const float HitboxScale = 0.85f;
 
-        public Rectangle Bounds => new(
-            (int)(Position.X * ResolutionHelper.ScaleX),
-            (int)(Position.Y * ResolutionHelper.ScaleY),
-            (int)(Texture.Width * Scale * ResolutionHelper.ScaleX),
-            (int)(Texture.Height * Scale * ResolutionHelper.ScaleY)
-        );
+public Rectangle Bounds => new(
+    (int)((Position.X + (Texture.Width * Scale * (1 - HitboxScale) / 2)) * ResolutionHelper.ScaleX),
+    (int)((Position.Y + (Texture.Height * Scale * (1 - HitboxScale) / 2)) * ResolutionHelper.ScaleY),
+    (int)(Texture.Width * Scale * HitboxScale * ResolutionHelper.ScaleX),
+    (int)(Texture.Height * Scale * HitboxScale * ResolutionHelper.ScaleY)
+);
+
 
         public CardView(Card card, Vector2 position, Texture2D texture)
         {

@@ -13,7 +13,6 @@ namespace MiJuego.Views;
     {
         _texture = new Texture2D(graphicsDevice, 1, 1);
         _texture.SetData(new[] { Color.White });
-
         _position = position;
         _width = width;
         _height = height;

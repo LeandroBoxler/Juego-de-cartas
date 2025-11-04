@@ -19,19 +19,28 @@ public class CardsHandView
         Refresh();
     }
 
-    public void Refresh()
+   public void Refresh()
+{
+    _cardViews.Clear();
+    float spacing = 5f; 
+    for (int i = 0; i < _player.Hand.Count; i++)
     {
-        _cardViews.Clear();
-        for (int i = 0; i < _player.Hand.Count; i++)
+        if (_player.Hand[i] is Card card)
         {
-            if (_player.Hand[i] is Card card)
+            var texture = SpriteHelper.Load(card.Texture);
+            var scale = 0.55f;
+
+            var position = _startPosition + new Vector2(i * (texture.Width * scale + spacing), 0);
+
+            var cardView = new CardView(card, position, texture)
             {
-                var texture = SpriteHelper.Load(card.Texture);
-                var position = _startPosition + new Vector2(i * (texture.Width + 10), 0);
-                _cardViews.Add(new CardView(card, position, texture));
-            }
+                Scale = scale
+            };
+
+            _cardViews.Add(cardView);
         }
     }
+}
 
     public List<CardView> GetCardViews() => _cardViews;
 
