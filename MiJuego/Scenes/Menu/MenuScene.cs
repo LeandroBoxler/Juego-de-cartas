@@ -15,6 +15,7 @@ public class MenuScene : IGameScene
     private GameState _gameState;
 
     private SelectMenu _selectMenu;
+
     public MenuScene(GameState gameState)
     {
         _gameState = gameState;
@@ -23,22 +24,14 @@ public class MenuScene : IGameScene
     {
         SpriteHelper.Initialize(GameServices.Content);
         _font = GameServices.Content.Load<SpriteFont>("DefaultFont");
-       _selectMenu = new SelectMenu( _font, new Rectangle(100, 100, 200, 50), "Start Game");
-       
-    }
-
+        _selectMenu = new SelectMenu(_font, new Vector2(290, 200), "Iniciar juego");
+}
     public void Update(GameTime gameTime)
     {
         if (_selectMenu.Update())
         {
             _gameState.Player = PlayerFactory.Create("Juan", 5, 2, 30);
-            SceneManager.ChangeScene(new BattleScene(_gameState));
-        }
-
-        var keyboard = Keyboard.GetState();
-        if (keyboard.IsKeyDown(Keys.Enter))
-        {
-            _gameState.Player = PlayerFactory.Create("Juan", 5, 2, 30);
+            Mouse.SetCursor(MouseCursor.Arrow);
             SceneManager.ChangeScene(new BattleScene(_gameState));
         }
     }
