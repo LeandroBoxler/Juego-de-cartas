@@ -74,11 +74,8 @@ namespace MiJuego.Scenes.Battle;
 
             if (_activateCardButton.WasClicked(mouse, _lastClick) && CardSelected != null)
             {
-                new ActivateCardUseCase().Execute(Player, Enemy, CardSelected.Card);
-                Console.WriteLine($"Hiciste click en {CardSelected.Card.Name}");
-                
+                new ActivateCardUseCase().Execute(Player, Enemy, CardSelected.Card);                
                 _cardSelector.ClearSelection();
-                
                 _cardsHandView.Refresh();
                 CardSelected = null;
             }
@@ -102,7 +99,6 @@ namespace MiJuego.Scenes.Battle;
                 spriteBatch.DrawString(_font, $"Carta Seleccionada: {CardSelected.Card.Name}", new Vector2(150, 300), Color.Yellow);
             }
 
-            spriteBatch.DrawString(_font, "Escena 2 - Presione enter para pasar a la 1", new Vector2(150, 100), Color.Red);
             spriteBatch.End();
         }
     }
