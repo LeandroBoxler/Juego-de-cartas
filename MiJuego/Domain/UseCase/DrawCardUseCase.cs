@@ -13,7 +13,6 @@ class DrawCardUseCase
         if (card == null)
             return new OperationResult<ICard>("No cards left in deck.");
 
-        player.Deck.Remove(card);
         player.Hand.Add(card);
 
         return new OperationResult<ICard>(card);

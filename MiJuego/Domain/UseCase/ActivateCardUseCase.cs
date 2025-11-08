@@ -26,7 +26,6 @@ namespace MiJuego.Domain.UseCases;
                 return new OperationResult<bool>(errors);
 
             ActivateCard.Activate(player, target, card);
-            player.Hand.Remove(card);
 
             return new OperationResult<bool>(true);
         }
