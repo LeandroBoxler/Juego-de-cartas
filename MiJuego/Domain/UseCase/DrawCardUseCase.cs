@@ -1,5 +1,6 @@
 using System.Linq;
 using MiJuego.Domain.Interfaces;
+using MiJuego.Game;
 namespace MiJuego.Domain.UseCases;
 
 class DrawCardUseCase
@@ -13,7 +14,7 @@ class DrawCardUseCase
         if (card == null)
             return new OperationResult<ICard>("No cards left in deck.");
 
-        player.Hand.Add(card);
+        DrawCard.DrawCards(player);
 
         return new OperationResult<ICard>(card);
     }
