@@ -30,6 +30,9 @@ namespace MiJuego.Scenes.Battle;
         private Vector2 _cardStartPosition = new (0, 400);
         private CardSelector _cardSelector;
         private HUD _hud;
+    public bool turn = true;
+        
+        public Random Random = new Random();
 
         public BattleScene(GameState gameState)
         {
@@ -44,10 +47,12 @@ namespace MiJuego.Scenes.Battle;
     {
             SpriteHelper.Initialize(GameServices.Content);
             Player.Deck.AddRange(_cardList.AllCards);
+            Enemy.Deck.AddRange(_cardList.AllCards);
             _hud = new HUD(Player, Enemy, GameServices.GraphicsDevice);
             _font = GameServices.Content.Load<SpriteFont>("DefaultFont");
 
-            DrawCard.DrawCards(Player);
+        new DrawCardUseCase().Execute(Player);
+        new DrawCardUseCase().Execute(Enemy);
 
         _cardsHandView = new CardsHandView(
             Player,
@@ -61,27 +66,41 @@ namespace MiJuego.Scenes.Battle;
             );
         }
 
-        public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime)
+    {
+        MouseState mouse = Mouse.GetState();
+
+        CardSelected = _cardSelector.Update(CardViews, mouse, _lastClick, new Vector2(300, 200));
+
+
+        if (Enemy.HealthCurrent <= 0)
         {
-            MouseState mouse = Mouse.GetState();
+            SceneManager.ChangeScene(new MenuScene(_gameState));
+        }
+        if (!turn)
+        {
+            System.Threading.Thread.Sleep(1000);
+            new ActivateCardUseCase().Execute(Enemy, Player, Enemy.Hand[Random.Next(Enemy.Hand.Count)]);
+            new DrawCardUseCase().Execute(Enemy);
+            turn = true;            
+        }
 
-            CardSelected = _cardSelector.Update(CardViews, mouse, _lastClick, new Vector2(300, 200));
 
-            if (Enemy.HealthCurrent <= 0)
-            {
-                SceneManager.ChangeScene(new MenuScene(_gameState));
-            }
-
+        if (turn)
+        {
             if (_activateCardButton.WasClicked(mouse, _lastClick) && CardSelected != null)
             {
-                new ActivateCardUseCase().Execute(Player, Enemy, CardSelected.Card);                
+                new ActivateCardUseCase().Execute(Player, Enemy, CardSelected.Card);
                 _cardSelector.ClearSelection();
                 _cardsHandView.Refresh();
                 CardSelected = null;
+                new DrawCardUseCase().Execute(Player);
+                turn = false;
             }
 
             _lastClick = mouse.LeftButton == ButtonState.Pressed;
         }
+    }
 
         public void Draw(SpriteBatch spriteBatch)
         {
