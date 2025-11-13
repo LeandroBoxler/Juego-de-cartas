@@ -7,7 +7,6 @@ using MiJuego.Content;
 using MiJuego.Domain.Entities;
 using MiJuego.Domain.Interfaces;
 using MiJuego.Domain.UseCases;
-using MiJuego.Game;
 using MiJuego.Helpers;
 using MiJuego.Views;
 using MiJuego.Scenes.Menu;
@@ -30,7 +29,8 @@ namespace MiJuego.Scenes.Battle;
         private Vector2 _cardStartPosition = new (0, 400);
         private CardSelector _cardSelector;
         private HUD _hud;
-    public bool turn = true;
+        private DrawDetailCard _drawDetailView;
+        public bool turn = true;
         
         public Random Random = new Random();
 
@@ -41,10 +41,12 @@ namespace MiJuego.Scenes.Battle;
             Enemy = new Player("pedro", 5, 2, 30);
             _cardList = new CardList();
             _cardSelector = new CardSelector();
+            
         }
 
         public void LoadContent()
     {
+  
             SpriteHelper.Initialize(GameServices.Content);
             Player.Deck.AddRange(_cardList.AllCards);
             Enemy.Deck.AddRange(_cardList.AllCards);
@@ -58,20 +60,30 @@ namespace MiJuego.Scenes.Battle;
             Player,
             _cardStartPosition
         );
+        
         CardViews = _cardsHandView.GetCardViews();
             _activateCardButton = new ActivateButton(
                 SpriteHelper.Load("button-icon"),
                 new Vector2(350, 70),
                 0.3f
             );
+
+        _drawDetailView = new DrawDetailCard(
+            GameServices.Content.Load<SpriteFont>("DefaultFont"),
+            CardSelected?.Card,
+            new Vector2(GameServices.GraphicsDevice.Viewport.Width - 150, GameServices.GraphicsDevice.Viewport.Height - 500),
+            Color.White,
+            Color.Black * 0.5f,
+            GameServices.GraphicsDevice
+        );
+
         }
 
     public void Update(GameTime gameTime)
     {
         MouseState mouse = Mouse.GetState();
 
-        CardSelected = _cardSelector.Update(CardViews, mouse, _lastClick, new Vector2(300, 200));
-
+        CardSelected = _cardSelector.Update(CardViews, mouse, _lastClick, new Vector2(300, 200));   
 
         if (Enemy.HealthCurrent <= 0)
         {
@@ -103,21 +115,25 @@ namespace MiJuego.Scenes.Battle;
     }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin();
+    {
+        /////////////////// ESTO SIEMPRE ARRIBA 
+        spriteBatch.Begin();
+        ////////////////////////////////
+
+            _drawDetailView.Draw(spriteBatch);
             _hud.Draw(spriteBatch);
             _activateCardButton.Draw(spriteBatch);
             _cardsHandView.Draw(spriteBatch);
-            foreach (CardView cardView in CardViews)
-            {
-                cardView.Draw(spriteBatch);
-            }
-
+        foreach (CardView cardView in CardViews)
+        {
+            cardView.Draw(spriteBatch);
+        }
+            
             if (CardSelected != null)
             {
                 spriteBatch.DrawString(_font, $"Carta Seleccionada: {CardSelected.Card.Name}", new Vector2(150, 300), Color.Yellow);
             }
 
-            spriteBatch.End();
+        spriteBatch.End();
         }
     }
