@@ -29,7 +29,7 @@ namespace MiJuego.Scenes.Battle;
         private Vector2 _cardStartPosition = new (0, 400);
         private CardSelector _cardSelector;
         private HUD _hud;
-        private DrawDetailCard _drawDetailView;
+        private DrawDetailCardView _drawDetailView;
         public bool turn = true;
         
         public Random Random = new Random();
@@ -68,7 +68,7 @@ namespace MiJuego.Scenes.Battle;
                 0.3f
             );
 
-        _drawDetailView = new DrawDetailCard(
+        _drawDetailView = new DrawDetailCardView(
             GameServices.Content.Load<SpriteFont>("DefaultFont"),
             CardSelected?.Card,
             new Vector2(GameServices.GraphicsDevice.Viewport.Width - 150, GameServices.GraphicsDevice.Viewport.Height - 500),
@@ -81,6 +81,8 @@ namespace MiJuego.Scenes.Battle;
 
     public void Update(GameTime gameTime)
     {
+        _drawDetailView.Text = CardSelected?.Card.Description ?? "No hay carta seleccionada";
+
         MouseState mouse = Mouse.GetState();
 
         CardSelected = _cardSelector.Update(CardViews, mouse, _lastClick, new Vector2(300, 200));   
@@ -91,7 +93,7 @@ namespace MiJuego.Scenes.Battle;
         }
         if (!turn)
         {
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(500);
             new ActivateCardUseCase().Execute(Enemy, Player, Enemy.Hand[Random.Next(Enemy.Hand.Count)]);
             new DrawCardUseCase().Execute(Enemy);
             turn = true;            
@@ -120,7 +122,7 @@ namespace MiJuego.Scenes.Battle;
         spriteBatch.Begin();
         ////////////////////////////////
 
-            _drawDetailView.Draw(spriteBatch);
+            
             _hud.Draw(spriteBatch);
             _activateCardButton.Draw(spriteBatch);
             _cardsHandView.Draw(spriteBatch);
@@ -132,6 +134,7 @@ namespace MiJuego.Scenes.Battle;
             if (CardSelected != null)
             {
                 spriteBatch.DrawString(_font, $"Carta Seleccionada: {CardSelected.Card.Name}", new Vector2(150, 300), Color.Yellow);
+                _drawDetailView.Draw(spriteBatch);
             }
 
         spriteBatch.End();

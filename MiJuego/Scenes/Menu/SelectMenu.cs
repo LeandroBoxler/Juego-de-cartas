@@ -13,7 +13,7 @@ public class SelectMenu
     public Color TextColor = Color.White;
 
     private MouseState _previousMouse;
-    private Texture2D _texture; 
+    private readonly Texture2D _texture; 
 
     public SelectMenu(SpriteFont font, Vector2 position, string text)
     {
@@ -28,6 +28,8 @@ public class SelectMenu
         (int)_font.MeasureString(Text).X,
         (int)_font.MeasureString(Text).Y
     );
+
+    public Texture2D Texture => _texture;
 
     public bool Update()
     {
@@ -53,8 +55,8 @@ public class SelectMenu
         bool hovering = TextBounds.Contains(mouse.X, mouse.Y);
         var color = hovering ? HoverColor : BackgoundColor;
 
-        if (_texture != null)
-            spriteBatch.Draw(_texture, TextBounds, color);
+        if (Texture != null)
+            spriteBatch.Draw(Texture, TextBounds, color);
 
         spriteBatch.DrawString(_font, Text, Position, TextColor);
     }
