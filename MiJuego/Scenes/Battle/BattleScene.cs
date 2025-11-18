@@ -70,7 +70,7 @@ namespace MiJuego.Scenes.Battle;
 
         _drawDetailView = new DrawDetailCardView(
             GameServices.Content.Load<SpriteFont>("DefaultFont"),
-            CardSelected?.Card,
+            CardSelected?.Card.Description,
             new Vector2(GameServices.GraphicsDevice.Viewport.Width - 150, GameServices.GraphicsDevice.Viewport.Height - 500),
             Color.White,
             Color.Black * 0.5f,
