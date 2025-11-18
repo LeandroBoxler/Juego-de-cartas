@@ -16,7 +16,7 @@ public class DrawDetailCardView
     {
       
         _font = font;
-        Text = text ?? "No hay cartas disponibles";
+        Text = text ?? "";
         _centerPosition = centerPosition;
         _textColor = textColor;
         _backgroundColor = backgroundColor;
