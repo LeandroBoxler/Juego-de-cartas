@@ -12,11 +12,11 @@ public class DrawDetailCardView
     private Texture2D _rectTexture;
     private Color _backgroundColor;
 
-    public DrawDetailCardView( SpriteFont font, ICard card, Vector2 centerPosition, Color textColor, Color backgroundColor, GraphicsDevice graphicsDevice)
+    public DrawDetailCardView( SpriteFont font, string text, Vector2 centerPosition, Color textColor, Color backgroundColor, GraphicsDevice graphicsDevice)
     {
       
         _font = font;
-        Text = card?.Description ?? "";
+        Text = text ?? "";
         _centerPosition = centerPosition;
         _textColor = textColor;
         _backgroundColor = backgroundColor;
