@@ -12,15 +12,14 @@ public class DrawDetailCardView
     private Texture2D _rectTexture;
     private Color _backgroundColor;
 
-    public DrawDetailCardView( SpriteFont font, ICard card, Vector2 centerPosition, Color textColor, Color backgroundColor, GraphicsDevice graphicsDevice)
+    public DrawDetailCardView( SpriteFont font, string text, Vector2 centerPosition, Color textColor, Color backgroundColor, GraphicsDevice graphicsDevice)
     {
       
         _font = font;
-        Text = card?.Description ?? "";
+        Text = text ?? "No hay cartas disponibles";
         _centerPosition = centerPosition;
         _textColor = textColor;
         _backgroundColor = backgroundColor;
-
         _rectTexture = new Texture2D(graphicsDevice, 1, 1);
         _rectTexture.SetData(new[] { Color.White });
     }
