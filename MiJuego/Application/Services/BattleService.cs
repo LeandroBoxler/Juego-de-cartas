@@ -25,13 +25,11 @@ public class BattleService
         _deckService = deckService;
     }
 
-    // robar cartas del deck
     public OperationResult<bool> DrawCards(IPlayer player)
     {
         return _drawCardUseCase.Execute(player);
     }
 
-    // activar una carta en la batalla
     public OperationResult<bool> ActivateCard(IPlayer player, IPlayer target, ICard card)
     {
         return _activateCardUseCase.Execute(player, target, card);
@@ -42,7 +40,6 @@ public class BattleService
         return _getCardsUseCase.Execute();
     }
 
-    // inicializar el deck del jugador con todas las cartas disponibles
     public void InitializePlayerDeck(IPlayer player)
     {
         var cardsResult = GetAllCards();

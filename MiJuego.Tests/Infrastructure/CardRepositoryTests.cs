@@ -14,10 +14,8 @@ public class CardRepositoryTests
     [Fact]
     public void GetAllCards_ShouldReturnNonEmptyList()
     {
-        // Act
         var cards = _cardRepository.GetAllCards();
 
-        // Assert
         Assert.NotNull(cards);
         Assert.NotEmpty(cards);
     }
@@ -25,10 +23,8 @@ public class CardRepositoryTests
     [Fact]
     public void GetAllCards_ShouldReturnCardsWithValidProperties()
     {
-        // Act
         var cards = _cardRepository.GetAllCards();
 
-        // Assert
         foreach (var card in cards)
         {
             Assert.NotNull(card);
@@ -41,41 +37,33 @@ public class CardRepositoryTests
     [Fact]
     public void GetAllCards_ShouldReturnExpectedNumberOfCards()
     {
-        // Act
         var cards = _cardRepository.GetAllCards();
 
-        // Assert
-        Assert.Equal(2, cards.Count); // Actualmente hay 2 cartas: Bola de fuego y Curación
+        Assert.Equal(2, cards.Count);
     }
 
     [Fact]
     public void GetAllCards_ShouldContainFireballCard()
     {
-        // Act
         var cards = _cardRepository.GetAllCards();
 
-        // Assert
-        Assert.Contains(cards, c => c.Name == "Bola de fuego");
+        Assert.Contains(cards, c => c.Name == "Fireball");
     }
 
     [Fact]
     public void GetAllCards_ShouldContainHealingCard()
     {
-        // Act
         var cards = _cardRepository.GetAllCards();
 
-        // Assert
-        Assert.Contains(cards, c => c.Name == "Curación");
+        Assert.Contains(cards, c => c.Name == "Healing");
     }
 
     [Fact]
     public void GetAllCards_ShouldReturnNewListEachTime()
     {
-        // Act
         var cards1 = _cardRepository.GetAllCards();
         var cards2 = _cardRepository.GetAllCards();
 
-        // Assert
         Assert.NotSame(cards1, cards2);
     }
 }

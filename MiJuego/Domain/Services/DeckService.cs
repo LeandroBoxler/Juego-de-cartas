@@ -13,20 +13,17 @@ public class DeckService : IDeckService
         _rng = new Random();
     }
 
-    // metodo para robar cartas del deck
     public void DrawCards(IPlayer player, int maxHandSize)
     {
         if(player == null)
             throw new ArgumentNullException(nameof(player));
 
-        // mientras no tenga la mano llena y haya cartas en el deck
         while(player.Hand.Count < maxHandSize && player.Deck.Count > 0)
         {
             int idx = _rng.Next(player.Deck.Count);
             ICard card = player.Deck[idx];
 
             player.Hand.Add(card);
-            // nota: no estoy removiendo del deck, talvez despues lo arreglo
         }
     }
 

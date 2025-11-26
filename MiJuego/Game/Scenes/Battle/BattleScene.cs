@@ -47,17 +47,14 @@ namespace MiJuego.Scenes.Battle;
 
         public void LoadContent()
     {
-            // inicializar sprites
             SpriteHelper.Initialize(GameServices.Content);
             
-            // inicializar mazos de los jugadores
             _battleService.InitializePlayerDeck(Player);
             _battleService.InitializePlayerDeck(Enemy);
             
             _hud = new HUD(Player, Enemy, GameServices.GraphicsDevice);
             _font = GameServices.Content.Load<SpriteFont>("DefaultFont");
 
-            // robar cartas iniciales
             _battleService.DrawCards(Player);
             _battleService.DrawCards(Enemy);
 
@@ -68,14 +65,12 @@ namespace MiJuego.Scenes.Battle;
         
         CardViews = _cardsHandView.GetCardViews();
         
-            // boton para activar carta
             _activateCardButton = new ActivateButton(
                 SpriteHelper.Load("button-icon"),
                 new Vector2(350, 70),
                 0.3f
             );
 
-        // vista de detalles de la carta seleccionada
         _drawDetailView = new DrawDetailCardView(
             GameServices.Content.Load<SpriteFont>("DefaultFont"),
             CardSelected?.Card.Description,
@@ -88,24 +83,21 @@ namespace MiJuego.Scenes.Battle;
 
     public void Update(GameTime gameTime)
     {
-        // actualizar texto de descripcion
         _drawDetailView.Text = CardSelected?.Card.Description ?? "No hay carta seleccionada";
 
         MouseState mouse = Mouse.GetState();
 
-        // actualizar seleccion de carta
         CardSelected = _cardSelector.Update(CardViews, mouse, _lastClick, new Vector2(300, 200));   
 
-        // si el enemigo murio, volver al menu
         if(Enemy.HealthCurrent <= 0)
         {
             SceneManager.ChangeScene(new MenuScene(_gameState));
         }
         
-        // turno del bot
+
         if(!turn)
         {
-            System.Threading.Thread.Sleep(500); // delay para que se vea mejor
+            System.Threading.Thread.Sleep(500);
             
             var botSelectedCard = _botService.SelectCard(Enemy, Player);
             _battleService.ActivateCard(Enemy, Player, botSelectedCard);
@@ -114,7 +106,6 @@ namespace MiJuego.Scenes.Battle;
             turn = true;            
         }
 
-        // turno del jugador
         if(turn)
         {
             if(_activateCardButton.WasClicked(mouse, _lastClick) && CardSelected != null)

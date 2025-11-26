@@ -32,28 +32,22 @@ public class BattleServiceTests
     [Fact]
     public void InitializePlayerDeck_ShouldAddCardsToPlayerDeck()
     {
-        // Arrange
         var mockPlayer = MockPlayer.CreateMockPlayerRandom();
         mockPlayer.Object.Deck.Clear();
 
-        // Act
         _battleService.InitializePlayerDeck(mockPlayer.Object);
 
-        // Assert
         Assert.NotEmpty(mockPlayer.Object.Deck);
     }
 
     [Fact]
     public void DrawCards_ShouldReturnSuccess_WhenPlayerHasCards()
     {
-        // Arrange
         var mockPlayer = MockPlayer.CreateMockPlayerRandom();
         mockPlayer.Object.Hand.Clear();
 
-        // Act
         var result = _battleService.DrawCards(mockPlayer.Object);
 
-        // Assert
         Assert.True(result.IsSuccess);
         Assert.Equal(5, mockPlayer.Object.Hand.Count);
     }
@@ -61,7 +55,6 @@ public class BattleServiceTests
     [Fact]
     public void ActivateCard_ShouldReturnSuccess_WhenCardIsInHand()
     {
-        // Arrange
         var playerMock = MockPlayer.CreateMockPlayerRandom();
         var targetMock = MockPlayer.CreateMockPlayerRandom();
         var cardMock = MockCard.CreateMockCardRandom();
@@ -69,10 +62,8 @@ public class BattleServiceTests
         playerMock.Object.Hand.Add(cardMock.Object);
         int initialHandSize = playerMock.Object.Hand.Count;
 
-        // Act
         var result = _battleService.ActivateCard(playerMock.Object, targetMock.Object, cardMock.Object);
 
-        // Assert
         Assert.True(result.IsSuccess);
         Assert.Equal(initialHandSize - 1, playerMock.Object.Hand.Count);
         Assert.DoesNotContain(cardMock.Object, playerMock.Object.Hand);
@@ -81,15 +72,12 @@ public class BattleServiceTests
     [Fact]
     public void ActivateCard_ShouldReturnError_WhenCardNotInHand()
     {
-        // Arrange
         var playerMock = MockPlayer.CreateMockPlayerRandom();
         var targetMock = MockPlayer.CreateMockPlayerRandom();
         var cardMock = MockCard.CreateMockCardRandom();
 
-        // Act
         var result = _battleService.ActivateCard(playerMock.Object, targetMock.Object, cardMock.Object);
 
-        // Assert
         Assert.False(result.IsSuccess);
         Assert.Contains("Card not found in player's hand.", result.Errors);
     }
@@ -97,10 +85,8 @@ public class BattleServiceTests
     [Fact]
     public void GetAllCards_ShouldReturnListOfCards()
     {
-        // Act
         var result = _battleService.GetAllCards();
 
-        // Assert
         Assert.True(result.IsSuccess);
         Assert.NotNull(result.Value);
         Assert.NotEmpty(result.Value);
@@ -109,14 +95,11 @@ public class BattleServiceTests
     [Fact]
     public void ActivateCard_ShouldReturnError_WhenPlayerIsNull()
     {
-        // Arrange
         var targetMock = MockPlayer.CreateMockPlayerRandom();
         var cardMock = MockCard.CreateMockCardRandom();
 
-        // Act
         var result = _battleService.ActivateCard(null, targetMock.Object, cardMock.Object);
 
-        // Assert
         Assert.False(result.IsSuccess);
         Assert.Contains("Player cannot be null.", result.Errors);
     }
@@ -124,14 +107,11 @@ public class BattleServiceTests
     [Fact]
     public void ActivateCard_ShouldReturnError_WhenTargetIsNull()
     {
-        // Arrange
         var playerMock = MockPlayer.CreateMockPlayerRandom();
         var cardMock = MockCard.CreateMockCardRandom();
 
-        // Act
         var result = _battleService.ActivateCard(playerMock.Object, null, cardMock.Object);
 
-        // Assert
         Assert.False(result.IsSuccess);
         Assert.Contains("Target cannot be null.", result.Errors);
     }

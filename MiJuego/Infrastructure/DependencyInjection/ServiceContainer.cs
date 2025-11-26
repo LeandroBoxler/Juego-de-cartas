@@ -6,7 +6,6 @@ using MiJuego.Infrastructure.Repositories;
 
 namespace MiJuego.Infrastructure.DependencyInjection;
 
-// contenedor de servicios - talvez deberia usar un DI container de verdad pero esto funciona
 public static class ServiceContainer
 {
     private static ICardRepository _cardRepository;
@@ -14,21 +13,16 @@ public static class ServiceContainer
     private static BattleService _battleService;
     private static BotService _botService;
 
-    // inicializar todos los servicios
     public static void Initialize()
     {
-        // repositorios
         _cardRepository = new CardRepository();
 
-        // servicios de dominio
         _deckService = new DeckService();
 
-        // casos de uso
         var drawCardUseCase = new DrawCardUseCase(_deckService);
         var activateCardUseCase = new ActivateCardUseCase();
         var getCardsUseCase = new GetCardsUseCase(_cardRepository);
 
-        // servicios de aplicacion
         _battleService = new BattleService(
             drawCardUseCase,
             activateCardUseCase,
