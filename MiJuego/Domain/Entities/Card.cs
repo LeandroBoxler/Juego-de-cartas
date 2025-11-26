@@ -1,5 +1,3 @@
-
-
 using System;
 using MiJuego.Domain.Interfaces;
 
@@ -14,7 +12,7 @@ public class Card : ICard
 
     private readonly Action<IPlayer, IPlayer> _effect;
     public string Texture { get; set; }
-    public object TextureKey { get; internal set; }
+    public object TextureKey { get; internal set; }  // no estoy seguro si esto se usa
 
     public Card(string name, string description, CardType type, Action<IPlayer, IPlayer> effect,
         int? value, string texture)
@@ -27,8 +25,10 @@ public class Card : ICard
         Value = value;
     }
 
+    // aplicar el efecto de la carta
     public void ApplyEffect(IPlayer player, IPlayer target)
     {
-        _effect?.Invoke(player, target);
+        if(_effect != null)
+            _effect(player, target);
     }
 }
