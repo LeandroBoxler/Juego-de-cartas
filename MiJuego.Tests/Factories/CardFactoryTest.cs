@@ -1,6 +1,5 @@
 ﻿using MiJuego.Domain.Factories;
 using MiJuego.Domain.Interfaces;
-using MiJuego.Game;
 using MiJuego.Tests.Mocks;
 using Moq;
 
