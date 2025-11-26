@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MiJuego.Helpers;
 using MiJuego.Scenes;
 using MiJuego.Scenes.Menu;
+using MiJuego.Infrastructure.DependencyInjection;
 
 namespace MiJuego;
 
@@ -11,12 +12,12 @@ public class Game1 : Microsoft.Xna.Framework.Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private GameState _gameState;
+    
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-
     }
 
     protected override void Initialize()
@@ -24,6 +25,8 @@ public class Game1 : Microsoft.Xna.Framework.Game
         _graphics.PreferredBackBufferWidth = 800;
         _graphics.PreferredBackBufferHeight = 600;
         _graphics.ApplyChanges();
+
+        ServiceContainer.Initialize();
 
         _gameState = new GameState();
         base.Initialize();
@@ -36,9 +39,6 @@ public class Game1 : Microsoft.Xna.Framework.Game
         GameServices.Content = Content;
         ResolutionHelper.UpdateScale(GraphicsDevice);
         GameServices.GraphicsDevice = GraphicsDevice;
-
-
-
     }
 
     protected override void Update(GameTime gameTime)
@@ -49,7 +49,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.CornflowerBlue); 
         SceneManager.Draw(_spriteBatch);
         base.Draw(gameTime);
     }

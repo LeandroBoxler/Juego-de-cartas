@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MiJuego.Domain.Interfaces;
 using MiJuego.Domain.Factories;
+using MiJuego.Domain.UseCases;
 
 namespace MiJuego.Content;
 
@@ -20,6 +21,5 @@ namespace MiJuego.Content;
                 {
                     player.HealthCurrent = Math.Min(player.HealthCurrent + 40, player.HealthMax);
                 }, 40,"card").Card,
-
         };
-    }
+}
