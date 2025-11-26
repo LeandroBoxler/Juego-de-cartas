@@ -1,21 +1,32 @@
 using System.Linq;
 using MiJuego.Domain.Interfaces;
-using MiJuego.Game;
+
 namespace MiJuego.Domain.UseCases;
 
-class DrawCardUseCase
+public class DrawCardUseCase
 {
-    public OperationResult<ICard> Execute(IPlayer player)
+    private readonly IDeckService _deckService;
+    private readonly int _maxHandSize;
+
+    public DrawCardUseCase(IDeckService deckService, int maxHandSize = 5)
     {
-        if (player == null)
-            return new OperationResult<ICard>("Player cannot be null.");
+        _deckService = deckService;
+        _maxHandSize = maxHandSize;
+    }
 
-        var card = player.Deck.FirstOrDefault();
-        if (card == null)
-            return new OperationResult<ICard>("No cards left in deck.");
+    public OperationResult<bool> Execute(IPlayer player)
+    {
+        // validar que el player no sea null
+        if(player == null)
+            return new OperationResult<bool>("Player cannot be null.");
 
-        DrawCard.DrawCards(player);
+        // revisar si tiene cartas en el deck
+        if(player.Deck.Count == 0)
+            return new OperationResult<bool>("No cards left in deck.");
 
-        return new OperationResult<ICard>(card);
+        // TODO: tal vez agregar log aqui?
+        _deckService.DrawCards(player, _maxHandSize);
+
+        return new OperationResult<bool>(true);
     }
 }
